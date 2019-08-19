@@ -1,15 +1,19 @@
 const Telegraf = require('telegraf')
-const axios = require('axios');
+const axios = require('axios')
+const watcher = require('./watcher')
 
 //Send Telegram the API key for the bot
 const bot = new Telegraf('744332035:AAG3R8cmaa462Z0oy7ZpoPRYMuYCcFOckXI')
 
 //Framework
-var NodesWatched = [];
+var NodesWatched = []
 
 //Basic Commands
 //Bot Start Message
-bot.start((ctx) => ctx.reply('✌🏼Welcome, fellow Tracer✌🏼 \n I am merely a bot, so please dont abuse me. \n \nMy sole purpose in this life is to help you watch your nodes! I will allow you to subscribe for notifications regarding downtimes, node updates, low Ethereum balance, or payouts when your node(s) completes a job! \n \nWith that being said, you probably want to add your node(s) using the /add command. \n \nUse the following syntax: \n\n/add ERC725 \n \nReplace ERC725 with the ERC725 address assigned to your node. \n \nExample: /add 123.456.789.012 \n \nAfter that, you can send me some more commands to configure the notifications or check your node metrics.  \n \nExamples: \n- /nodedetails: To get a detailed view of your nodes \n- /tokenstatus: To check your staked tokens vs your locked tokens \n- /history: To show information about your payout history \n\nTo see the menu of the possible commands just send me /help \n \nMy creator, @bottomshorter, put a lot of time into this. Send him a tip as appreciation! ✌🏼 ☕️ & 🍔 ERC20 => 0x0d4C19fb34d4B8A45004E7A2a23B9d7283b32304'))
+bot.start((ctx) => {
+    startBackgroundCheck(ctx)
+    ctx.reply('✌🏼Welcome, fellow Tracer✌🏼 \n I am merely a bot, so please dont abuse me. \n \nMy sole purpose in this life is to help you watch your nodes! I will allow you to subscribe for notifications regarding downtimes, node updates, low Ethereum balance, or payouts when your node(s) completes a job! \n \nWith that being said, you probably want to add your node(s) using the /add command. \n \nUse the following syntax: \n\n/add ERC725 \n \nReplace ERC725 with the ERC725 address assigned to your node. \n \nExample: /add 123.456.789.012 \n \nAfter that, you can send me some more commands to configure the notifications or check your node metrics.  \n \nExamples: \n- /nodedetails: To get a detailed view of your nodes \n- /tokenstatus: To check your staked tokens vs your locked tokens \n- /history: To show information about your payout history \n\nTo see the menu of the possible commands just send me /help \n \nMy creator, @bottomshorter, put a lot of time into this. Send him a tip as appreciation! ✌🏼 ☕️ & 🍔 ERC20 => 0x0d4C19fb34d4B8A45004E7A2a23B9d7283b32304')
+})
 
 //Bot Help Message
 bot.help((ctx) => ctx.reply('These are the following commands: \n\n- /add: Add ERC725 identity/desired nickname for node to watchlist \n- /detail: To get a detailed view of your nodes \n- /tokenstatus: To check your staked tokens vs your locked tokens \n- /history: To show information about your payout history'))
@@ -69,3 +73,31 @@ bot.command('/nodedetails', (ctx) => {
 
 //Launch bot
 bot.launch()
+
+console.log("bot running...")
+
+NodesWatched.push("0x20d4a7bebb36905212cd5324e501b43666186e22") //DEBUG
+function onNewEntry(ctx) {
+    return function(newOffers) {
+        if (isNotEmpty(newOffers))
+        ctx.reply("🎉You have a new offer!🎉" + JSON.stringify(newOffers, null, 4))
+        // console.log("New offers were:" + JSON.stringify(newOffers, null, 4))
+    }
+}
+
+const REFRESH_INTERVAL_SEC = 5
+// Start thread to watch
+//startBackgroundCheck()
+
+function startBackgroundCheck(ctx) {
+    function doBackgroundCheck() {
+        watcher.runBackgroundCheck(NodesWatched, onNewEntry(ctx)).then(
+            () => setTimeout(doBackgroundCheck, REFRESH_INTERVAL_SEC * 1000)
+        )
+    }
+    doBackgroundCheck();
+}
+
+function isNotEmpty(newOffers){
+    return !(Object.entries(newOffers).length === 0 && newOffers.constructor === Object)
+}
