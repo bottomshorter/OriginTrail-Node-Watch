@@ -2,7 +2,7 @@ Thank you for making your way onto my GitHub. After taking a web development cla
 
 __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__ 
 
-Pre-liminary Steps:
+## Pre-liminary Steps:
 	-open Terminal/Command Prompt
 	-execute the following: cd Desktop
 
