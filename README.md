@@ -5,6 +5,7 @@ __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__
 ## Pre-liminary Steps:
 
 A.) Open Terminal/Command Prompt
+
 B.) Execute the following: 
 
 	cd Desktop
