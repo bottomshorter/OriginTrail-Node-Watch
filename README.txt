@@ -1,4 +1,4 @@
-1.) Clone the repo and navigate into the folder and to install dependencies type in cmd:
+1.) Clone the repo and navigate into the folder and to install dependencies type in cmd/terminal:
 
 	npm install	
 
