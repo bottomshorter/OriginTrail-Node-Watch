@@ -3,8 +3,11 @@ Thank you for making your way onto my GitHub. After taking a web development cla
 __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__ 
 
 ## Pre-liminary Steps:
-	-open Terminal/Command Prompt
-	-execute the following: cd Desktop
+
+A.) Open Terminal/Command Prompt
+B.) Execute the following: 
+
+	cd Desktop
 
 
 1.) Once you are navigated to the Desktop, clone the repo and navigate into the folder and to install dependencies type in cmd:
