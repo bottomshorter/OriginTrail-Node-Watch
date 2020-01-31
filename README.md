@@ -13,7 +13,7 @@ __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__
 	
 	cd OriginTrail-Node-Watch
 
-	npm install telegraf
+	npm install telegraf --save
 
 2.) Go to Telegram, and talk start a new conversation with 'BotFather' via https://t.me/botfather
 
