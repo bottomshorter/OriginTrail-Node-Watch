@@ -5,8 +5,6 @@ __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__
 Pre-liminary Steps:
 	-open Terminal/Command Prompt
 	-execute the following: cd Desktop
-	
-	You should see in your command prompt 
 
 
 1.) Clone the repo and navigate into the folder and to install dependencies type in cmd:
