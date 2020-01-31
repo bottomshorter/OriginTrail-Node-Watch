@@ -3,7 +3,7 @@ const axios = require('axios')
 const watcher = require('./watcher')
 
 //Send Telegram the API key for the bot
-const bot = new Telegraf('744332035:AAG3R8cmaa462Z0oy7ZpoPRYMuYCcFOckXI')
+const bot = new Telegraf('APIKEY')
 
 //Framework
 var NodesWatched = []
