@@ -14,9 +14,13 @@ __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__
 	npm install	
 
 2.) Go to Telegram, and talk start a new conversation with 'BotFather' via https://t.me/botfather
+
 3.) Create a new bot by using the command /newbot
+
 4.) Give it a username | ex.. "OriginTrailNodeWatch"
+
 5.) Give the bot a "bot" name | ex.. OriginTrailNodeBot
+
 6.) After your bot has been created, BotFather will send you a 'token' for access to the Telegram HTTP API.
 
 	NOTE: DO NOT SHARE YOUR API KEY WITH ANYONE FOR SECURITY REASONS
