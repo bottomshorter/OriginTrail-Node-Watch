@@ -11,7 +11,7 @@ __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__
 	
 	git clone https://github.com/bottomshorter/OriginTrail-Node-Watch.git
 
-	npm install	
+	npm install telegraf
 
 2.) Go to Telegram, and talk start a new conversation with 'BotFather' via https://t.me/botfather
 
