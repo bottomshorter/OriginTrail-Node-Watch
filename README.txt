@@ -1,4 +1,4 @@
-1.) Clone the repo and navigate into the folder and to install dependencies type in cmd/terminal:
+1.) Clone the repo and navigate into the folder and to install dependencies type in cmd:
 
 	npm install	
 
@@ -6,7 +6,7 @@
 3.) Create a new bot by using the command /newbot
 4.) Give it a username | ex.. "OriginTrailNodeWatch"
 5.) Give the bot a "bot" name | ex.. OriginTrailNodeBot
-6.) After your bot has been created, BotFather will send you a 'token' for access to the HTTP API.
+6.) After your bot has been created, BotFather will send you a 'token' for access to the Telegram HTTP API.
 
 	NOTE: DO NOT SHARE YOUR API KEY WITH ANYONE FOR SECURITY REASONS
 
@@ -17,9 +17,7 @@ Line 6 should look similar to this:
 
 	const bot = new Telegraf('APIKEY') ---> const bot = new Telegraf('744332035:Blahblah462Z0oy7ZpoBLAHuYCcFBLAHBLAH')
 
-8b.) Navigate into the cloned folder and do the following command in console:
-
-	nano index.js
+8b.) Navigate into the cloned folder and do the following edit index.js with notepad:
 
 Then find the line with: 
 	
