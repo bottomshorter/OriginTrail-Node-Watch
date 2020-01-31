@@ -7,7 +7,7 @@ __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__
 	-execute the following: cd Desktop
 
 
-1.) Clone the repo and navigate into the folder and to install dependencies type in cmd:
+1.) Once you are navigated to the Desktop, clone the repo and navigate into the folder and to install dependencies type in cmd:
 	
 	git clone https://github.com/bottomshorter/OriginTrail-Node-Watch.git
 
