@@ -36,7 +36,7 @@ B.) Execute the following:
    Give the bot a "bot" name | ex.. OriginTrailNodeBot
 
 ## Step 6
-After your bot has been created, BotFather will send you a 'token' for access to the Telegram HTTP API.
+After your bot has been created, BotFather will send you a 'token' for access to the Telegram HTTP API, and it will also send you a link to talk to your bot.
 
 	NOTE: DO NOT SHARE YOUR API KEY WITH ANYONE FOR SECURITY REASONS
 
