@@ -4,7 +4,7 @@ Thank you for making your way onto my GitHub. After taking a web development cla
 
 __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE JUST LIKE HOUSTON__ 
 
-## Pre-liminary Steps:
+## Preliminary Steps:
 
 A.) Open Terminal/Command Prompt
 
