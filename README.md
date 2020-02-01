@@ -86,11 +86,20 @@ Save the file and go into command console and type: npm start
 10.) After your console says 'bot is running... Start a conversation with your bot and type /start to begin using the bot to add your nodes
 
 
-Side Notes: 
+## Troubleshooting
 
-**-Since this is in alpha, you will have to keep your command console/terminal open during the use of your bot. Further versions will guide the user how to install and just run on your OTNODE.**
+![Image](RemembertoSave.png)
+
+If you get this error, please make sure you are pressing save after your APIKEY is put into notepad / the code editor.
 
 
--If you would like to add your nodes into the NodesWatched array so you don't have to add them each time you start up the bot, just added your ERC725 Identities into the NodesWatched array with following syntax:
+## Side Notes
+
+**Since this is in alpha, you will have to keep your command console/terminal open during the use of your bot. Further versions will guide the user how to install and just run on your OTNODE**
+
+## How to preload nodes onto the bot
+You may have noticed that every time your command console / terminal is exited, your bot will not respond or function, and it will also forget which nodes you added. To solve this, look below.
+
+If you would like to add your nodes into the NodesWatched array so you don't have to add them each time you start up the bot, just added your ERC725 Identities into the NodesWatched array with following syntax:
 
 var NodesWatched = ['ERC725 ID #1', 'ERC725 ID #2' , 'ERC725 ID #X', '...']
