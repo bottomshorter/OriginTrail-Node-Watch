@@ -36,9 +36,9 @@ bot.command('/add', (ctx) => {
     axios.get('https://othub-api.origin-trail.network/api/nodes/DataHolders/' + userERC725)
         .then(response => {
             //console.log(response.data);
-            console.log(response.data.Identity);
+            // console.log(response.data.Identity);
             NodesWatched.push(response.data.Identity);
-            console.log(NodesWatched);
+            // console.log(NodesWatched);
             ctx.reply("You have sucessfully added node: " + response.data.Identity);
         })
         .catch(error => {
@@ -99,7 +99,7 @@ bot.command('/odncheck', (ctx) => {
     //API Call
     axios.get('https://othub-api.origin-trail.network/api/Home')
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             ctx.reply('OriginTrail Decentralized Network Stats' + "\n\nOffers Info:" + "\n       Offers Total: " + response.data.OffersInfo.OffersTotal + "\n       Offers Active: " + response.data.OffersInfo.OffersActive + "\n       Offers in the past 7 days: " + response.data.OffersInfo.OffersLast7Days + "\n       Offers in the past 24 Hours: " + response.data.OffersInfo.OffersLast24Hours + "\n\nNodes Info:" + "\n       Nodes Online: " + response.data.NodesInfo.OnlineNodeCount + "\n       Approved Nodes: " + response.data.NodesInfo.ApprovedNodesCount + "\n       Nodes With Active Jobs: " + response.data.NodesInfo.NodesWithActiveJobs + "\n       Nodes With Jobs this week: " + response.data.NodesInfo.NodesWithJobsThisWeek + "\n       Nodes with Jobs this month: " + response.data.NodesInfo.NodesWithJobsThisMonth + "\n       Total Staked Tokens: " + response.data.NodesInfo.StakedTokensTotal + "\n       Locked Tokens: " + response.data.NodesInfo.LockedTokensTotal + "\n       Last Approval Amount: " + response.data.NodesInfo.LastApprovalAmount + "\n\nLitigations Info:" + "\n       Litigations Total: " + response.data.LitigationsInfo.LitigationsTotal + "\n       Litigations (7 days): " + response.data.LitigationsInfo.Litigations7Days + "\n       Litigations Penalized (7 days): " + response.data.LitigationsInfo.Litigations7DaysPenalized + "\n       Litigations (1 Month): " + response.data.LitigationsInfo.Litigations1Month + "\n       Litigations Penalized (1 Month): " + response.data.LitigationsInfo.Litigations1MonthPenalized + "\n       Litigations Not Penalized (1 Month): " + response.data.LitigationsInfo.Litigations1MonthNotPenalized + "\n       Litigations (Last Hour): " + response.data.LitigationsInfo.LitigationsActiveLastHour);
         })
         .catch(error => {
