@@ -2,6 +2,8 @@
 
 Thank you for making your way onto my GitHub. After taking a web development class, I decided to take a stab at a little software. This is a side project I've been working on for OriginTrail Nodes. Please feel free to contribute and make a pull request for new features.
 
+A huge thank you to bbnm for the API Documentation and the TraceLabs team for creating this wonderful ecosystem.
+
 __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE JUST LIKE HOUSTON__ 
 
 ## Preliminary Steps:
