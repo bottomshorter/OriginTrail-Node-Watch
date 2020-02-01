@@ -90,7 +90,7 @@ Save the file and go into command console and type: npm start
 
 ![Image](RememberToSave.png)
 
-If you get this error, please make sure you are pressing save after your APIKEY is put into notepad / the code editor.
+If you get this error, please make sure you are pressing **save** after your APIKEY is put into notepad / the code editor.
 
 
 ## Side Notes
