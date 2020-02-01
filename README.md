@@ -83,7 +83,7 @@ Save the file and go into command console and type: npm start
 ![Image](BotRunning.gif)
 
 ## Step 10
-10.) After your console says 'bot is running... Start a conversation with your bot and type /start to begin using the bot to add your nodes
+10.) After your console says 'bot is running... Start a conversation **(using the link generated in step 6)** with your bot and type /start to begin using the bot to add your nodes
 
 
 ## Troubleshooting
