@@ -6,13 +6,13 @@ const watcher = require('./watcher')
 const bot = new Telegraf('APIKEY')
 
 //Framework
-var NodesWatched = []
+var NodesWatched = [];
 
 //Basic Commands
 //Bot Start Message
 bot.start((ctx) => {
     // startBackgroundCheck(ctx)
-    ctx.reply('✌🏼Welcome, fellow Tracer✌🏼 \n I am merely a bot, so please dont abuse me. \n \nMy sole purpose in this life is to help you watch your nodes! This version is currently in alpha and functionality will be LIMITED for a indefinite period of time, meaning updates will only come as I have free time to contribute. I encourage those with development experience to contribute to the GitHub and help me develop features. Feel free to contact me or make a pull request to the Github repo. \n \nWith that being said, you probably want to add your node(s) using the /add command. \n \nUse the following syntax: \n\n/add ERC725 \n \nReplace ERC725 with the ERC725 address assigned to your node. \n \nExample: /add 0xb7695a0a431282a124fbd301b67625cc178ba57c  \n \nCommands: \n- /details: To get a detailed view of your nodes \n- /recentjobs: To check the recent jobs won within the last 7 days across ALL of your nodes \n\nTo see the menu of the possible commands just send me /help')
+    ctx.reply('✌🏼Welcome, fellow Tracer✌🏼 \n I am merely a bot, so please dont abuse me. \n \nMy sole purpose in this life is to help you watch your nodes! This version is currently in alpha and functionality will be LIMITED for a indefinite period of time, meaning updates will only come as I have free time to contribute. I encourage those with development experience to contribute to the GitHub and help me develop features. Feel free to contact me or make a pull request to the Github repo. \n \nWith that being said, you probably want to add your node(s) using the /add command. \n \nUse the following syntax: \n\n/add ERC725 \n \nReplace ERC725 with the ERC725 address assigned to your node. \n \nExample: /add 0xb7695a0a431282a124fbd301b67625cc178ba57c  \n \nCommands: \n- /details: To get a detailed view of your nodes \n- /recentjobs: To check the recent jobs won within the last 7 days across ALL of your nodes \n- /odncheck: To view the stats or "health" of the ODN \n\nTo see the menu of the possible commands just send me /help')
 })
 
 //Bot Help Message
@@ -93,6 +93,22 @@ bot.command('/recentjobs', (ctx) => {
         //console.log(NodesWatched);
     }
 });
+
+//Recent Jobs command
+bot.command('/odncheck', (ctx) => {
+    //API Call
+    axios.get('https://othub-api.origin-trail.network/api/Home')
+        .then(response => {
+            console.log(response.data);
+            ctx.reply('OriginTrail Decentralized Network Stats' + "\n\nOffers Info:" + "\n       Offers Total: " + response.data.OffersInfo.OffersTotal + "\n       Offers Active: " + response.data.OffersInfo.OffersActive + "\n       Offers in the past 7 days: " + response.data.OffersInfo.OffersLast7Days + "\n       Offers in the past 24 Hours: " + response.data.OffersInfo.OffersLast24Hours + "\n\nNodes Info:" + "\n       Nodes Online: " + response.data.NodesInfo.OnlineNodeCount + "\n       Approved Nodes: " + response.data.NodesInfo.ApprovedNodesCount + "\n       Nodes With Active Jobs: " + response.data.NodesInfo.NodesWithActiveJobs + "\n       Nodes With Jobs this week: " + response.data.NodesInfo.NodesWithJobsThisWeek + "\n       Nodes with Jobs this month: " + response.data.NodesInfo.NodesWithJobsThisMonth + "\n       Total Staked Tokens: " + response.data.NodesInfo.StakedTokensTotal + "\n       Locked Tokens: " + response.data.NodesInfo.LockedTokensTotal + "\n       Last Approval Amount: " + response.data.NodesInfo.LastApprovalAmount + "\n\nLitigations Info:" + "\n       Litigations Total: " + response.data.LitigationsInfo.LitigationsTotal + "\n       Litigations (7 days): " + response.data.LitigationsInfo.Litigations7Days + "\n       Litigations Penalized (7 days): " + response.data.LitigationsInfo.Litigations7DaysPenalized + "\n       Litigations (1 Month): " + response.data.LitigationsInfo.Litigations1Month + "\n       Litigations Penalized (1 Month): " + response.data.LitigationsInfo.Litigations1MonthPenalized + "\n       Litigations Not Penalized (1 Month): " + response.data.LitigationsInfo.Litigations1MonthNotPenalized + "\n       Litigations (Last Hour): " + response.data.LitigationsInfo.LitigationsActiveLastHour);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        //console.log(NodesWatched);
+    }
+);
+
 
 //Launch bot
 bot.launch()
