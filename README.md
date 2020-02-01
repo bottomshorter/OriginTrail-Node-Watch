@@ -19,7 +19,7 @@ B.) Execute the following:
 
 	npm install telegraf --save
 
-2.) Go to Telegram, and talk start a new conversation with 'BotFather' via https://t.me/botfather
+2.) Go to your Telegram application, and start a new conversation with 'BotFather' via https://t.me/botfather
 
 3.) Create a new bot by using the command /newbot
 
