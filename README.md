@@ -1,3 +1,5 @@
+## OriginTrail-Node-Watch
+
 Thank you for making your way onto my GitHub. After taking a web development class, I decided to take a stab at a little software. This is a side project I've been working on for OriginTrail Nodes. Please feel free to contribute and make a pull request for new features.
 
 __THIS BOT IS HOSTED LOCALLY ON YOUR MACHINE__ 
