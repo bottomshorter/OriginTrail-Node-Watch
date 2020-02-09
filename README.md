@@ -108,8 +108,11 @@ var NodesWatched = ['ERC725 ID #1', 'ERC725 ID #2' , 'ERC725 ID #X', '...']
 
 
 ## To Update
-Before you update your node remember to copy and paste your APIKEY so you can repeat step 7 through step 8a or 8b depending on which one you did.
+Before you update your node, remember to copy and paste your APIKEY into NotePad so you can repeat step 7 through step 8a or 8b depending on which one you did.
+
+**If you preloaded nodes into the bot you should also copy and paste your array of nodes into NotePad too**
 
 In order to update the node execute:
 
 	git pull
+
