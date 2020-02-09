@@ -1,4 +1,4 @@
-## OriginTrail-Node-Watch
+## OriginTrail-Node-Watch 1.0.1
 
 Thank you for making your way onto my GitHub. After taking a web development class, I decided to take a stab at a little software. This is a side project I've been working on for OriginTrail Nodes. Please feel free to contribute and make a pull request for new features.
 
@@ -105,3 +105,11 @@ You may have noticed that every time your command console / terminal is exited, 
 If you would like to add your nodes into the NodesWatched array so you don't have to add them each time you start up the bot, just added your ERC725 Identities into the NodesWatched array with following syntax:
 
 var NodesWatched = ['ERC725 ID #1', 'ERC725 ID #2' , 'ERC725 ID #X', '...']
+
+
+## To Update
+Before you update your node remember to copy and paste your APIKEY so you can repeat step 7 through step 8a or 8b depending on which one you did.
+
+In order to update the node execute:
+
+	git pull
