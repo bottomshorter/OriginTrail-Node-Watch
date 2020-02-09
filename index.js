@@ -16,7 +16,7 @@ bot.start((ctx) => {
 })
 
 //Bot Help Message
-bot.help((ctx) => ctx.reply('These are the following commands: \n\n- /add: Add ERC725 identity to watchlist \n- /details: To get a detailed view of your nodes \n- /recentjobs: To check the recent jobs won within the last 7 days across ALL of your nodes \n-Other commands are currently under development...'))
+bot.help((ctx) => ctx.reply('These are the following commands: \n\n- /add: Add ERC725 identity to watchlist \n- /details: To get a detailed view of your nodes \n- /recentjobs: To check the recent jobs won within the last 7 days across ALL of your nodes \n- /odncheck: To view the stats or "health" of the ODN \n-Other commands are currently under development...'))
 
 
 //Listen To These Commands
@@ -60,7 +60,7 @@ bot.command('/details', (ctx) => {
         .then(response => {
             
             // console.log(response.data);
-            ctx.reply("Node - " + NodeNum++ + "\n\nIdentity: " + response.data.Identity + "\n\nTotal Won Offers: " + response.data.TotalWonOffers + "\nWon Offers(Last 7 days): " + response.data.WonOffersLast7Days + "\n\nStaked Tokens: " + (Math.round(response.data.StakeTokens * 100) / 100).toFixed(2) + "\nTokens Paid: " + (Math.round(response.data.PaidTokens * 100) / 100).toFixed(2) + "\nTokens locked in jobs: " + (Math.round(response.data.StakeReservedTokens * 100) / 100).toFixed(2) + "\n\nManagement Wallet: " + response.data.ManagementWallet);
+            ctx.reply("💻Node - " + NodeNum++ + "\n\nIdentity: " + response.data.Identity + "\n\nTotal Won Offers: " + response.data.TotalWonOffers + "\nWon Offers(Last 7 days): " + response.data.WonOffersLast7Days + "\n\nStaked Tokens: " + (Math.round(response.data.StakeTokens * 100) / 100).toLocaleString() + "\nTokens Paid: " + (Math.round(response.data.PaidTokens * 100) / 100).toFixed(2) + "\nTokens locked in jobs: " + (Math.round(response.data.StakeReservedTokens * 100) / 100).toFixed(2) + "\n\nManagement Wallet: " + response.data.ManagementWallet);
         })
         .catch(error => {
             console.log(error);
@@ -85,7 +85,7 @@ bot.command('/recentjobs', (ctx) => {
             for (i = 0; i < response.data.length; i++){
             // console.log(response.data);
             // console.log(Object.keys(response.data));
-            ctx.reply("🎉Job -" + JobNum++  + "🎉" + "\n\nOfferID: " + response.data[i].OfferId + "\n\nToken Amount Per Holder: " + (Math.floor((response.data[i].TokenAmountPerHolder)*100)/100));
+            ctx.reply("🎉Job - " + ++JobNum  + "🎉" + "\n\nToken Amount Per Holder: " + (Math.floor((response.data[i].TokenAmountPerHolder)*100)/100) + "\n\n Identity: " + response.data[i].Identity);
         }})
         .catch(error => {
             console.log(error);
@@ -100,7 +100,7 @@ bot.command('/odncheck', (ctx) => {
     axios.get('https://othub-api.origin-trail.network/api/Home')
         .then(response => {
             // console.log(response.data);
-            ctx.reply('OriginTrail Decentralized Network Stats' + "\n\nOffers Info:" + "\n       Offers Total: " + response.data.OffersInfo.OffersTotal + "\n       Offers Active: " + response.data.OffersInfo.OffersActive + "\n       Offers in the past 7 days: " + response.data.OffersInfo.OffersLast7Days + "\n       Offers in the past 24 Hours: " + response.data.OffersInfo.OffersLast24Hours + "\n\nNodes Info:" + "\n       Nodes Online: " + response.data.NodesInfo.OnlineNodeCount + "\n       Approved Nodes: " + response.data.NodesInfo.ApprovedNodesCount + "\n       Nodes With Active Jobs: " + response.data.NodesInfo.NodesWithActiveJobs + "\n       Nodes With Jobs this week: " + response.data.NodesInfo.NodesWithJobsThisWeek + "\n       Nodes with Jobs this month: " + response.data.NodesInfo.NodesWithJobsThisMonth + "\n       Total Staked Tokens: " + response.data.NodesInfo.StakedTokensTotal + "\n       Locked Tokens: " + response.data.NodesInfo.LockedTokensTotal + "\n       Last Approval Amount: " + response.data.NodesInfo.LastApprovalAmount + "\n\nLitigations Info:" + "\n       Litigations Total: " + response.data.LitigationsInfo.LitigationsTotal + "\n       Litigations (7 days): " + response.data.LitigationsInfo.Litigations7Days + "\n       Litigations Penalized (7 days): " + response.data.LitigationsInfo.Litigations7DaysPenalized + "\n       Litigations (1 Month): " + response.data.LitigationsInfo.Litigations1Month + "\n       Litigations Penalized (1 Month): " + response.data.LitigationsInfo.Litigations1MonthPenalized + "\n       Litigations Not Penalized (1 Month): " + response.data.LitigationsInfo.Litigations1MonthNotPenalized + "\n       Litigations (Last Hour): " + response.data.LitigationsInfo.LitigationsActiveLastHour);
+            ctx.reply('💻OriginTrail Decentralized Network Stats📈' + "\n\nOffers Info:" + "\n       Offers Total: " + response.data.OffersInfo.OffersTotal + "\n       Offers Active: " + response.data.OffersInfo.OffersActive + "\n       Offers (Last 7D): " + response.data.OffersInfo.OffersLast7Days + "\n       Offers (Last 24H): " + response.data.OffersInfo.OffersLast24Hours + "\n\nNodes Info:" + "\n       Nodes Online: " + response.data.NodesInfo.OnlineNodesCount + "\n       Nodes With Active Jobs: " + response.data.NodesInfo.NodesWithActiveJobs + "\n       Nodes With Jobs (Last 7D): " + response.data.NodesInfo.NodesWithJobsThisWeek + "\n       Nodes With Jobs (Last 1M): " + response.data.NodesInfo.NodesWithJobsThisMonth + "\n\n       Total Staked Tokens: " + Math.floor(response.data.NodesInfo.StakedTokensTotal).toLocaleString() + "\n       Locked Tokens: " + Math.floor(response.data.NodesInfo.LockedTokensTotal).toLocaleString() + "\n       Locked Tokens Ratio: " + ((response.data.NodesInfo.LockedTokensTotal/response.data.NodesInfo.StakedTokensTotal)*100).toLocaleString() + "%" + "\n\nLitigations Info:" + "\n       Litigations Total: " + response.data.LitigationsInfo.LitigationsTotal + "\n\n       Litigations (Last 7D): " + response.data.LitigationsInfo.Litigations7Days + "\n       Litigations Penalized (Last 7D): " + response.data.LitigationsInfo.Litigations7DaysPenalized + "\n       Litigations Not Penalized (Last 7D): " + response.data.LitigationsInfo.Litigations7DaysNotPenalized + "\n\n       Litigations (Last 1M): " + response.data.LitigationsInfo.Litigations1Month + "\n       Litigations Penalized (Last 1M): " + response.data.LitigationsInfo.Litigations1MonthPenalized + "\n       Litigations Not Penalized (Last 1M): " + response.data.LitigationsInfo.Litigations1MonthNotPenalized + "\n\n       Litigations (Last Hour): " + response.data.LitigationsInfo.LitigationsActiveLastHour);
         })
         .catch(error => {
             console.log(error);
@@ -113,7 +113,7 @@ bot.command('/odncheck', (ctx) => {
 //Launch bot
 bot.launch()
 
-console.log("bot running...")
+console.log("bot running version 1.0.1 ...")
 
 NodesWatched.push() //DEBUG
 function onNewEntry(ctx) {
