@@ -1,12 +1,15 @@
-const Telegraf = require('telegraf')
-const axios = require('axios')
-const watcher = require('./watcher')
+const Telegraf 	= require('telegraf')
+const axios 	= require('axios')
+const watcher	= require('./watcher')
+
+// Config
+const cfg = require('./config.js');
 
 //Send Telegram the API key for the bot
-const bot = new Telegraf('APIKEY')
+const bot = new Telegraf(cfg.telegram);
 
 //Framework
-var NodesWatched = [];
+var NodesWatched = cfg.nodes;
 
 //Basic Commands
 //Bot Start Message
