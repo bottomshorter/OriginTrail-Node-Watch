@@ -1,12 +1,18 @@
-const Telegraf = require('telegraf')
-const axios = require('axios')
-const watcher = require('./watcher')
+const Telegraf 	= require('telegraf')
+const axios 	= require('axios')
+const monitor	= require('./monitor')
+
+// Config
+const cfg = require('./config.js');
 
 //Send Telegram the API key for the bot
-const bot = new Telegraf('APIKEY')
+const bot = new Telegraf(cfg.telegram);
 
 //Framework
 var NodesWatched = [];
+
+// Monitor
+var Monitor = new monitor(bot, NodesWatched);
 
 //Basic Commands
 //Bot Start Message
@@ -27,22 +33,21 @@ bot.command('/add', (ctx) => {
     //Assign variable to user input
     var telegramString = ctx.message.text;
 
-    //console.log(telegramString);
+   console.log(ctx.message);
 
     var userERC725 = telegramString.replace('/add ', '');
-    //console.log(userERC725);
-
 
     axios.get('https://othub-api.origin-trail.network/api/nodes/DataHolders/' + userERC725)
         .then(response => {
-            //console.log(response.data);
-            // console.log(response.data.Identity);
-            NodesWatched.push(response.data.Identity);
-            // console.log(NodesWatched);
+            
+			var node = { username: ctx.message.from.username, user_id: ctx.message.from.id, chat_id: ctx.chat.id, node_id: response.data.Identity };
+		
+            NodesWatched.push( node );
+		
             ctx.reply("You have sucessfully added node: " + response.data.Identity);
         })
         .catch(error => {
-            console.log(error);
+            //console.log(error);
             ctx.reply('You did not enter a valid ERC725 Address. Please enter a valid one.');
         });
 
@@ -53,14 +58,14 @@ bot.command('/add', (ctx) => {
 bot.command('/details', (ctx) => {
     //Reply the Amount of nodes 
     ctx.reply('Number of nodes saved: ' + NodesWatched.length);
-    var i;
-    var NodeNum = 1;
-    for (i = 0; i < NodesWatched.length; i++){
-    axios.get('https://othub-api.origin-trail.network/api/nodes/DataHolders/' + NodesWatched[i])
+
+    for (var i = 0; i < NodesWatched.length; i++){
+		
+    	axios.get('https://othub-api.origin-trail.network/api/nodes/DataHolders/' + NodesWatched[i].node_id)
         .then(response => {
             
             // console.log(response.data);
-            ctx.reply("💻Node - " + NodeNum++ + "\n\nIdentity: " + response.data.Identity + "\n\nTotal Won Offers: " + response.data.TotalWonOffers + "\nWon Offers(Last 7 days): " + response.data.WonOffersLast7Days + "\n\nStaked Tokens: " + (Math.round(response.data.StakeTokens * 100) / 100).toLocaleString() + "\nTokens Paid: " + (Math.round(response.data.PaidTokens * 100) / 100).toFixed(2) + "\nTokens locked in jobs: " + (Math.round(response.data.StakeReservedTokens * 100) / 100).toFixed(2) + "\n\nManagement Wallet: " + response.data.ManagementWallet);
+            ctx.reply("💻Node - " + i+1 + "\n\nIdentity: " + response.data.Identity + "\n\nTotal Won Offers: " + response.data.TotalWonOffers + "\nWon Offers(Last 7 days): " + response.data.WonOffersLast7Days + "\n\nStaked Tokens: " + (Math.round(response.data.StakeTokens * 100) / 100).toLocaleString() + "\nTokens Paid: " + (Math.round(response.data.PaidTokens * 100) / 100).toFixed(2) + "\nTokens locked in jobs: " + (Math.round(response.data.StakeReservedTokens * 100) / 100).toFixed(2) + "\n\nManagement Wallet: " + response.data.ManagementWallet);
         })
         .catch(error => {
             console.log(error);
@@ -73,19 +78,18 @@ bot.command('/details', (ctx) => {
 
 //Recent Jobs command
 bot.command('/recentjobs', (ctx) => {
-    //Reply to the Amount of nodes added 
+   
+	//Reply to the Amount of nodes added 
     ctx.reply('Jobs won across all nodes within the last 7 days:');
-    var i;
-    var JobNum = 0;
     
-    for (i = 0; i < NodesWatched.length; i++){
-    axios.get('https://othub-api.origin-trail.network/api/RecentActivity?identity=' + NodesWatched[i])
+    for (var i = 0; i < NodesWatched.length; i++){
+    	axios.get('https://othub-api.origin-trail.network/api/RecentActivity?identity=' + NodesWatched[i].node_id)
         .then(response => {
             
             for (i = 0; i < response.data.length; i++){
             // console.log(response.data);
             // console.log(Object.keys(response.data));
-            ctx.reply("🎉Job - " + ++JobNum  + "🎉" + "\n\nToken Amount Per Holder: " + (Math.floor((response.data[i].TokenAmountPerHolder)*100)/100) + "\n\n Identity: " + response.data[i].Identity);
+            ctx.reply("🎉Job - " + i+1  + "🎉" + "\n\nToken Amount Per Holder: " + (Math.floor((response.data[i].TokenAmountPerHolder)*100)/100) + "\n\n Identity: " + response.data[i].Identity);
         }})
         .catch(error => {
             console.log(error);
